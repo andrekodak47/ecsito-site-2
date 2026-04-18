@@ -1306,8 +1306,33 @@
         }
         
         @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding-bottom: 20px;
+            }
+            
+            .hero-content {
+                padding: 120px 4% 40px;
+            }
+            
+            .hero-stats {
+                position: relative;
+                bottom: auto;
+                left: 4%;
+                right: 4%;
+                margin-top: 40px;
+            }
+            
             .hero-stats-inner {
+                opacity: 1;
+                transform: none;
                 grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 16px 20px;
+            }
+            
+            .hero-stat {
+                justify-content: center;
             }
             
             .stats-row {
@@ -1337,6 +1362,18 @@
             .project-card {
                 flex: 0 0 300px;
                 height: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
             }
         }
         
@@ -1419,7 +1456,7 @@
                         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                     </div>
                     <div>
-                        <div class="hero-stat-value">500+</div>
+                        <div class="hero-stat-value">150+</div>
                         <div class="hero-stat-label">объектов</div>
                     </div>
                 </div>
@@ -1441,7 +1478,7 @@
         <div class="section-header reveal">
             <div class="section-label">Портфолио</div>
             <h2 class="section-title">Реализованные <span>проекты</span></h2>
-            <p class="section-desc">Портфолио из 500+ успешно выполненных объектов различной сложности</p>
+            <p class="section-desc">Портфолио из 150+ успешно выполненных объектов различной сложности</p>
         </div>
         <div class="portfolio-scroll">
             <div class="project-card">
@@ -1549,7 +1586,7 @@
                 <div class="stat-card-label">Лет на рынке</div>
             </div>
             <div class="stat-card reveal">
-                <div class="stat-card-value">500+</div>
+                <div class="stat-card-value">150+</div>
                 <div class="stat-card-label">Реализованных объектов</div>
             </div>
             <div class="stat-card reveal">
