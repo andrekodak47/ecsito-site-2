@@ -22,33 +22,33 @@
         
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            background: #0A0A0A;
-            color: #fff;
+            background: #F5F5F7;
+            color: #1A1A1A;
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
         /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         ::-webkit-scrollbar-track {
-            background: #0A0A0A;
+            background: #F5F5F7;
         }
-        
+
         ::-webkit-scrollbar-thumb {
-            background: #333;
+            background: #C0C0C8;
             border-radius: 4px;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
             background: #2277B5;
         }
-        
+
         ::selection {
-            background: rgba(34, 119, 181, 0.3);
-            color: white;
+            background: rgba(34, 119, 181, 0.2);
+            color: #1A1A1A;
         }
         
         /* Navigation */
@@ -66,19 +66,69 @@
             transition: all 0.4s ease;
         }
         
-        .nav.scrolled {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        /* Nav default (over hero dark bg) - white theme */
+        .nav .nav-logo-text {
+            color: #FFFFFF;
         }
-        
+
+        .nav .nav-logo-text small {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .nav .nav-links a {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .nav .nav-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .nav .nav-mobile-btn {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav .nav-mobile-btn svg {
+            stroke: #FFFFFF;
+        }
+
+        /* Nav scrolled - dark text on light bg */
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .nav.scrolled .nav-logo-text {
+            color: #1A1A1A;
+        }
+
+        .nav.scrolled .nav-logo-text small {
+            color: rgba(0,0,0,0.45);
+        }
+
+        .nav.scrolled .nav-links a {
+            color: rgba(0,0,0,0.65);
+        }
+
+        .nav.scrolled .nav-links a:hover {
+            color: #1A1A1A;
+        }
+
+        .nav.scrolled .nav-mobile-btn {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .nav.scrolled .nav-mobile-btn svg {
+            stroke: #1A1A1A;
+        }
+
         .nav-logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
         }
-        
+
         .nav-logo-icon {
             width: 44px;
             height: 44px;
@@ -88,48 +138,43 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .nav-logo-icon svg {
             width: 24px;
             height: 24px;
             fill: white;
         }
-        
+
         .nav-logo-text {
-            color: white;
+            transition: color 0.3s;
         }
-        
+
         .nav-logo-text span {
             display: block;
             font-size: 20px;
             font-weight: 700;
         }
-        
+
         .nav-logo-text small {
             font-size: 10px;
-            color: rgba(255,255,255,0.5);
             text-transform: uppercase;
             letter-spacing: 2px;
+            transition: color 0.3s;
         }
-        
+
         .nav-links {
             display: flex;
             gap: 32px;
         }
-        
+
         .nav-links a {
-            color: rgba(255,255,255,0.7);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
             position: relative;
             transition: color 0.3s;
         }
-        
-        .nav-links a:hover {
-            color: white;
-        }
-        
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -140,11 +185,11 @@
             background: #2277B5;
             transition: width 0.3s;
         }
-        
+
         .nav-links a:hover::after {
             width: 100%;
         }
-        
+
         .nav-cta {
             background: #2277B5;
             color: white;
@@ -155,31 +200,32 @@
             font-weight: 600;
             transition: all 0.3s;
         }
-        
+
         .nav-cta:hover {
             background: #00D4FF;
             transform: translateY(-2px);
         }
-        
+
         .nav-mobile-btn {
             display: none;
             width: 44px;
             height: 44px;
-            background: rgba(255,255,255,0.05);
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s;
         }
-        
+
         .nav-mobile-btn svg {
             width: 24px;
             height: 24px;
-            stroke: white;
+            transition: stroke 0.3s;
         }
         
         /* Hero */
         .hero {
             min-height: 100vh;
+            min-height: 100dvh;
             position: relative;
             display: flex;
             align-items: center;
@@ -197,6 +243,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* Force reload, no cache */
+            image-rendering: -webkit-optimize-contrast;
         }
         
         .hero-bg::after {
@@ -219,10 +267,11 @@
             font-weight: 900;
             letter-spacing: -4px;
             margin-bottom: 16px;
+            color: #FFFFFF;
             opacity: 0;
             transform: translateY(60px);
         }
-        
+
         .hero-subtitle {
             font-size: clamp(20px, 3vw, 28px);
             font-weight: 500;
@@ -231,7 +280,7 @@
             opacity: 0;
             transform: translateY(40px);
         }
-        
+
         .hero-tagline {
             font-size: clamp(14px, 2vw, 18px);
             color: rgba(255,255,255,0.6);
@@ -341,8 +390,9 @@
         .hero-stat-value {
             font-size: 28px;
             font-weight: 700;
+            color: #FFFFFF;
         }
-        
+
         .hero-stat-label {
             font-size: 13px;
             color: rgba(255,255,255,0.5);
@@ -352,6 +402,14 @@
         .section {
             padding: 100px 4%;
             position: relative;
+        }
+
+        .section:nth-child(odd) {
+            background: #F0F4F8;
+        }
+
+        .section:nth-child(even) {
+            background: #FFFFFF;
         }
         
         .section-header {
@@ -383,10 +441,10 @@
         }
         
         .section-desc {
-            color: rgba(255,255,255,0.6);
+            color: rgba(0,0,0,0.55);
             font-size: 16px;
         }
-        
+
         /* About */
         .about-grid {
             display: grid;
@@ -396,42 +454,42 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .about-content h2 {
             font-size: clamp(24px, 3vw, 36px);
             margin-bottom: 20px;
         }
-        
+
         .about-content p {
-            color: rgba(255,255,255,0.7);
+            color: rgba(0,0,0,0.65);
             margin-bottom: 20px;
             font-size: 15px;
         }
-        
+
         .about-years {
             display: flex;
             align-items: center;
             gap: 24px;
             padding: 24px 0;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
             margin: 30px 0;
         }
-        
+
         .about-years-num {
             font-size: 72px;
             font-weight: 900;
             color: #2277B5;
             line-height: 1;
         }
-        
+
         .about-years-text {
-            color: rgba(255,255,255,0.8);
+            color: rgba(0,0,0,0.75);
         }
-        
+
         .about-years-text strong {
             display: block;
-            color: white;
+            color: #1A1A1A;
             font-size: 18px;
         }
         
@@ -454,13 +512,14 @@
             background: #2277B5;
             padding: 20px 30px;
             border-radius: 12px;
+            color: #FFFFFF;
         }
-        
+
         .about-badge-num {
             font-size: 36px;
             font-weight: 900;
         }
-        
+
         .about-badge-text {
             font-size: 13px;
             opacity: 0.9;
@@ -476,29 +535,32 @@
         
         .stat-card {
             padding: 24px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 16px;
             text-align: center;
             transition: all 0.3s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
         }
-        
+
         .stat-card:hover {
-            border-color: rgba(34, 119, 181, 0.3);
-            background: rgba(255,255,255,0.05);
+            background: #FFFFFF;
+            box-shadow: 0 8px 30px rgba(34, 119, 181, 0.12), 0 2px 8px rgba(0,0,0,0.06);
+            transform: translateY(-4px);
         }
-        
+
         .stat-card-value {
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 4px;
+            color: #1A1A1A;
         }
-        
+
         .stat-card-label {
             font-size: 12px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(0,0,0,0.5);
         }
-        
+
         /* Services */
         .services-grid {
             display: grid;
@@ -507,36 +569,37 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .service-card {
             padding: 32px;
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 20px;
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
         }
-        
+
         .service-card:hover {
-            border-color: rgba(34, 119, 181, 0.4);
-            background: rgba(255,255,255,0.04);
-            transform: translateY(-4px);
+            background: #FFFFFF;
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(34, 119, 181, 0.1), 0 4px 12px rgba(0,0,0,0.04);
         }
-        
+
         .service-card::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(34, 119, 181, 0.1), transparent);
+            background: linear-gradient(135deg, rgba(34, 119, 181, 0.08), transparent);
             opacity: 0;
             transition: opacity 0.4s;
         }
-        
+
         .service-card:hover::before {
             opacity: 1;
         }
-        
+
         .service-icon {
             width: 56px;
             height: 56px;
@@ -549,19 +612,19 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .service-icon svg {
             width: 28px;
             height: 28px;
             stroke: #2277B5;
             fill: none;
         }
-        
+
         .service-card:hover .service-icon {
             background: rgba(34, 119, 181, 0.2);
             transform: scale(1.1);
         }
-        
+
         .service-title {
             font-size: 18px;
             font-weight: 600;
@@ -569,19 +632,19 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .service-card:hover .service-title {
             color: #2277B5;
         }
-        
+
         .service-desc {
             font-size: 14px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(0,0,0,0.6);
             margin-bottom: 16px;
             position: relative;
             z-index: 1;
         }
-        
+
         .service-tags {
             display: flex;
             flex-wrap: wrap;
@@ -589,14 +652,14 @@
             position: relative;
             z-index: 1;
         }
-        
+
         .service-tag {
             padding: 4px 12px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: #F5F5F7;
+            border: 1px solid rgba(0,0,0,0.08);
             border-radius: 20px;
             font-size: 11px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(0,0,0,0.6);
         }
         
         /* Portfolio */
@@ -614,10 +677,10 @@
         }
         
         .portfolio-scroll::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.05);
             border-radius: 3px;
         }
-        
+
         .portfolio-scroll::-webkit-scrollbar-thumb {
             background: rgba(34, 119, 181, 0.5);
             border-radius: 3px;
@@ -630,6 +693,7 @@
             overflow: hidden;
             position: relative;
             scroll-snap-align: start;
+            cursor: pointer;
         }
         
         .project-card img {
@@ -664,12 +728,14 @@
             letter-spacing: 1px;
             margin-bottom: 12px;
             width: fit-content;
+            color: #FFFFFF;
         }
         
         .project-title {
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 8px;
+            color: #FFFFFF;
         }
         
         .project-location {
@@ -692,6 +758,35 @@
             font-size: 13px;
             color: rgba(255,255,255,0.5);
         }
+
+        .project-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 8px 16px;
+            background: rgba(34, 119, 181, 0.85);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #FFFFFF;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.35s ease;
+        }
+
+        .project-card:hover .project-more {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-more svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
         
         /* Why Us */
         .why-grid {
@@ -704,17 +799,19 @@
         
         .why-card {
             padding: 32px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 20px;
             position: relative;
             transition: all 0.4s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
         }
-        
+
         .why-card:hover {
-            border-color: rgba(34, 119, 181, 0.3);
+            box-shadow: 0 12px 40px rgba(34, 119, 181, 0.1), 0 4px 12px rgba(0,0,0,0.04);
+            transform: translateY(-5px);
         }
-        
+
         .why-icon {
             width: 56px;
             height: 56px;
@@ -726,11 +823,11 @@
             margin-bottom: 20px;
             transition: all 0.3s;
         }
-        
+
         .why-card:hover .why-icon {
             background: #2277B5;
         }
-        
+
         .why-icon svg {
             width: 26px;
             height: 26px;
@@ -738,68 +835,69 @@
             fill: none;
             transition: all 0.3s;
         }
-        
+
         .why-card:hover .why-icon svg {
             stroke: white;
         }
-        
+
         .why-title {
             font-size: 17px;
             font-weight: 600;
             margin-bottom: 10px;
         }
-        
+
         .why-card:hover .why-title {
             color: #2277B5;
         }
-        
+
         .why-desc {
             font-size: 14px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(0,0,0,0.6);
         }
-        
+
         .why-num {
             position: absolute;
             top: 20px;
             right: 24px;
             font-size: 48px;
             font-weight: 900;
-            color: rgba(255,255,255,0.03);
+            color: rgba(0,0,0,0.04);
         }
-        
+
         .why-card:hover .why-num {
             color: rgba(34, 119, 181, 0.1);
         }
-        
+
         /* Process */
         .process-timeline {
             max-width: 800px;
             margin: 0 auto;
             position: relative;
         }
-        
+
         .process-timeline::before {
             content: '';
             position: absolute;
-            left: 28px;
+            left: 27px;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: rgba(255,255,255,0.1);
+            width: 4px;
+            background: linear-gradient(to bottom, #2277B5, #00D4FF, rgba(34,119,181,0.2));
+            border-radius: 2px;
         }
-        
+
         .process-step {
             display: flex;
             gap: 32px;
             padding: 24px 0;
             position: relative;
         }
-        
+
         .process-icon {
-            width: 56px;
-            height: 56px;
-            background: #141414;
-            border: 2px solid #2277B5;
+            width: 58px;
+            height: 58px;
+            background: #FFFFFF;
+            border: 3px solid #2277B5;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -807,36 +905,37 @@
             flex-shrink: 0;
             position: relative;
             z-index: 1;
+            box-shadow: 0 0 0 4px rgba(34, 119, 181, 0.1);
         }
-        
+
         .process-icon svg {
             width: 24px;
             height: 24px;
             stroke: #2277B5;
             fill: none;
         }
-        
+
         .process-content {
             padding-top: 8px;
         }
-        
+
         .process-num {
             font-size: 42px;
             font-weight: 900;
-            color: rgba(255,255,255,0.08);
+            color: rgba(0,0,0,0.06);
             line-height: 1;
             margin-bottom: 4px;
         }
-        
+
         .process-title {
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 8px;
         }
-        
+
         .process-desc {
             font-size: 14px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(0,0,0,0.6);
             max-width: 400px;
         }
         
@@ -855,15 +954,16 @@
         
         .client-item {
             padding: 16px 32px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 10px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 12px;
             font-size: 18px;
             font-weight: 600;
-            color: rgba(255,255,255,0.7);
+            color: rgba(0,0,0,0.7);
             white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
         }
-        
+
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -871,55 +971,56 @@
             max-width: 1200px;
             margin: 60px auto 0;
         }
-        
+
         .testimonial-card {
             padding: 32px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255,255,255,0.08);
+            background: #FFFFFF;
+            border: none;
             border-radius: 20px;
             position: relative;
-            transition: transform 0.4s, border-color 0.4s;
+            transition: all 0.4s;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
         }
-        
+
         .testimonial-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(34, 119, 181, 0.4);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(34, 119, 181, 0.1), 0 4px 12px rgba(0,0,0,0.04);
         }
-        
+
         .testimonial-quote-icon {
             position: absolute;
             top: 24px;
             right: 24px;
-            opacity: 0.1;
+            opacity: 0.06;
             pointer-events: none;
         }
-        
+
         .testimonial-quote-icon svg {
             width: 40px;
             height: 40px;
-            fill: white;
+            fill: #1A1A1A;
         }
-        
+
         .testimonial-text {
             font-size: 15px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(0,0,0,0.7);
             line-height: 1.6;
             margin-bottom: 24px;
             position: relative;
             z-index: 1;
         }
-        
+
         .testimonial-author {
             display: flex;
             align-items: center;
             gap: 16px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(0,0,0,0.1);
             padding-top: 20px;
             margin-top: auto;
         }
-        
+
         .author-avatar {
             width: 48px;
             height: 48px;
@@ -933,16 +1034,16 @@
             color: white;
             flex-shrink: 0;
         }
-        
+
         .author-info-name {
             font-size: 16px;
             font-weight: 600;
-            color: white;
+            color: #1A1A1A;
         }
-        
+
         .author-info-role {
             font-size: 13px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(0,0,0,0.5);
         }
         
         /* Contact */
@@ -956,95 +1057,98 @@
         
         .contact-form {
             padding: 40px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: #FFFFFF;
+            border: none;
             border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
         }
-        
+
         .contact-form h3 {
             font-size: 22px;
             margin-bottom: 24px;
         }
-        
+
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
             margin-bottom: 16px;
         }
-        
+
         .form-group {
             margin-bottom: 16px;
         }
-        
+
         .form-group label {
             display: block;
             font-size: 13px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(0,0,0,0.55);
             margin-bottom: 6px;
         }
-        
+
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 14px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: #F5F5F7;
+            border: 1px solid rgba(0,0,0,0.12);
             border-radius: 8px;
-            color: white;
+            color: #1A1A1A;
             font-size: 14px;
             font-family: inherit;
             transition: all 0.3s;
         }
-        
+
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #2277B5;
         }
-        
+
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(255,255,255,0.3);
+            color: rgba(0,0,0,0.4);
         }
-        
+
         .form-group textarea {
             min-height: 120px;
             resize: vertical;
         }
-        
+
         .contact-info h3 {
             font-size: 22px;
             margin-bottom: 16px;
         }
-        
+
         .contact-info > p {
-            color: rgba(255,255,255,0.6);
+            color: rgba(0,0,0,0.6);
             margin-bottom: 32px;
         }
-        
+
         .contact-item {
             display: flex;
             align-items: center;
             gap: 16px;
             padding: 16px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 14px;
             margin-bottom: 12px;
             text-decoration: none;
             transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
         }
-        
+
         .contact-item:hover {
-            border-color: rgba(34, 119, 181, 0.3);
-            background: rgba(255,255,255,0.05);
+            background: #FFFFFF;
+            box-shadow: 0 6px 20px rgba(34, 119, 181, 0.1), 0 2px 6px rgba(0,0,0,0.04);
+            transform: translateX(4px);
         }
-        
+
         .contact-item:hover .contact-value {
             color: #2277B5;
         }
-        
+
         .contact-icon-small {
             width: 44px;
             height: 44px;
@@ -1055,22 +1159,22 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        
+
         .contact-icon-small svg {
             width: 20px;
             height: 20px;
             stroke: #2277B5;
             fill: none;
         }
-        
+
         .contact-label {
             font-size: 12px;
-            color: rgba(255,255,255,0.4);
+            color: rgba(0,0,0,0.4);
         }
-        
+
         .contact-value {
             font-weight: 600;
-            color: white;
+            color: #1A1A1A;
             transition: color 0.3s;
         }
         
@@ -1092,9 +1196,10 @@
         /* Footer */
         .footer {
             padding: 60px 4%;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            color: #FFFFFF;
         }
-        
+
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -1102,12 +1207,12 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .footer-brand {
             display: block;
             margin-bottom: 20px;
         }
-        
+
         .footer-brand-icon {
             width: 48px;
             height: 48px;
@@ -1117,133 +1222,345 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .footer-brand-icon svg {
             width: 24px;
             height: 24px;
             fill: white;
         }
-        
+
         .footer-brand-text span {
             display: block;
             font-size: 20px;
             font-weight: 700;
         }
-        
+
         .footer-brand-text small {
             font-size: 10px;
             color: rgba(255,255,255,0.4);
         }
-        
+
         .footer-desc {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.6);
             font-size: 14px;
             margin-bottom: 16px;
             max-width: 280px;
         }
-        
+
         .footer-requisites {
             font-size: 12px;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.4);
         }
-        
+
         .footer-title {
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 16px;
             margin-top: 0;
+            color: #FFFFFF;
         }
-        
+
         .footer-links {
             list-style: none;
         }
-        
+
         .footer-links li {
             margin-bottom: 10px;
         }
-        
+
         .footer-links a {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.6);
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s;
         }
-        
+
         .footer-links a:hover {
             color: #2277B5;
         }
-        
+
         .footer-bottom {
             max-width: 1200px;
             margin: 40px auto 0;
             padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top: 1px solid rgba(255,255,255,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .footer-copyright {
             font-size: 13px;
             color: rgba(255,255,255,0.4);
         }
-        
+
         .footer-top {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.6);
             text-decoration: none;
             font-size: 13px;
             transition: color 0.3s;
         }
-        
+
         .footer-top:hover {
             color: #2277B5;
         }
-        
+
         .footer-top-btn {
             width: 32px;
             height: 32px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.08);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .footer-top-btn svg {
             width: 16px;
             height: 16px;
             stroke: currentColor;
             fill: none;
         }
-        
+
+        /* Project Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background: #FFFFFF;
+            border-radius: 24px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+            transform: translateY(40px) scale(0.96);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+
+        .modal-close:hover {
+            background: #fff;
+            transform: rotate(90deg);
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: #1A1A1A;
+            stroke-width: 2;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .modal-body {
+            padding: 32px 40px 40px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-header {
+            margin-bottom: 24px;
+        }
+
+        .modal-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #2277B5;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1A1A1A;
+        }
+
+        .modal-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: rgba(0,0,0,0.55);
+        }
+
+        .modal-location svg {
+            width: 16px;
+            height: 16px;
+            stroke: #2277B5;
+            fill: none;
+        }
+
+        .modal-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(0,0,0,0.7);
+            margin-bottom: 28px;
+        }
+
+        .modal-gallery-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #2277B5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+
+        .modal-gallery {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+        }
+
+        .modal-gallery::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .modal-gallery::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 2px;
+        }
+
+        .modal-gallery::-webkit-scrollbar-thumb {
+            background: rgba(34, 119, 181, 0.4);
+            border-radius: 2px;
+        }
+
+        .modal-gallery img {
+            flex: 0 0 140px;
+            width: 140px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            scroll-snap-align: start;
+            transition: all 0.3s ease;
+            opacity: 0.75;
+            border: 2px solid transparent;
+        }
+
+        .modal-gallery img:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .modal-gallery img.active {
+            opacity: 1;
+            border-color: #2277B5;
+            box-shadow: 0 4px 16px rgba(34, 119, 181, 0.25);
+        }
+
+        @media (max-width: 640px) {
+            .modal-overlay {
+                padding: 0;
+            }
+            .modal {
+                max-height: 100vh;
+                border-radius: 0;
+            }
+            .modal-image {
+                height: 200px;
+            }
+            .modal-body {
+                padding: 24px;
+            }
+            .modal-title {
+                font-size: 22px;
+            }
+            .modal-gallery img {
+                flex: 0 0 120px;
+                width: 120px;
+                height: 85px;
+            }
+        }
+
         /* Toast */
         .toast {
             position: fixed;
             top: 100px;
             right: 20px;
             padding: 16px 24px;
-            background: #141414;
-            border: 1px solid #333;
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.1);
             border-radius: 12px;
-            color: white;
+            color: #1A1A1A;
             font-size: 14px;
             z-index: 10000;
             transform: translateX(150%);
             transition: transform 0.4s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
-        
+
         .toast.show {
             transform: translateX(0);
         }
-        
+
         /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.9);
+            background: rgba(255,255,255,0.98);
             backdrop-filter: blur(20px);
             z-index: 999;
             display: flex;
@@ -1255,14 +1572,14 @@
             pointer-events: none;
             transition: opacity 0.3s;
         }
-        
+
         .mobile-menu.open {
             opacity: 1;
             pointer-events: auto;
         }
-        
+
         .mobile-menu a {
-            color: white;
+            color: #1A1A1A;
             text-decoration: none;
             font-size: 24px;
             font-weight: 600;
@@ -1307,32 +1624,68 @@
         
         @media (max-width: 768px) {
             .hero {
-                min-height: auto;
-                padding-bottom: 20px;
+                min-height: 100dvh;
+                min-height: 100svh;
+                padding: 0 0 20px;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: stretch;
             }
             
             .hero-content {
-                padding: 120px 4% 40px;
+                padding: 100px 4% 16px;
+                margin: auto 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
             }
             
             .hero-stats {
                 position: relative;
                 bottom: auto;
-                left: 4%;
-                right: 4%;
-                margin-top: 40px;
+                left: auto;
+                right: auto;
+                margin-top: 0;
+                padding: 0 4%;
             }
             
             .hero-stats-inner {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 14px 16px;
                 opacity: 1;
                 transform: none;
-                grid-template-columns: 1fr;
-                gap: 12px;
-                padding: 16px 20px;
             }
             
             .hero-stat {
-                justify-content: center;
+                justify-content: flex-start;
+                gap: 12px;
+            }
+            
+            .hero-stat-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-stat-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .hero-stat-value {
+                font-size: 22px;
+            }
+            
+            .hero-title {
+                font-size: clamp(42px, 14vw, 64px);
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(16px, 4vw, 20px);
+            }
+            
+            .hero-tagline {
+                font-size: 14px;
             }
             
             .stats-row {
@@ -1366,6 +1719,10 @@
         }
         
         @media (max-width: 480px) {
+            .hero-title {
+                letter-spacing: -2px;
+            }
+            
             .hero-buttons {
                 flex-direction: column;
                 width: 100%;
@@ -1374,6 +1731,24 @@
             .btn-primary, .btn-secondary {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .hero-stats-inner {
+                padding: 12px 16px;
+            }
+            
+            .hero-stat-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-stat-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .hero-stat-value {
+                font-size: 22px;
             }
         }
         
@@ -1423,7 +1798,7 @@
     <!-- Hero -->
     <section class="hero" id="hero">
         <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80" alt="Construction">
+            <img src="img/city-map-bg.jpg?v=2" alt="Карта города">
         </div>
         <div class="hero-content">
             <h1 class="hero-title">ЭКСИТ</h1>
@@ -1478,83 +1853,125 @@
         <div class="section-header reveal">
             <div class="section-label">Портфолио</div>
             <h2 class="section-title">Реализованные <span>проекты</span></h2>
-            <p class="section-desc">Портфолио из 150+ успешно выполненных объектов различной сложности</p>
+            <p class="section-desc">150+ успешно выполненных объектов различной сложности — от ресторанов до промышленных зданий</p>
         </div>
         <div class="portfolio-scroll">
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Белый Кролик">
-                <div class="project-overlay">
-                    <span class="project-category">Рестораны WRF</span>
-                    <h3 class="project-title">Белый Кролик</h3>
-                    <div class="project-location">
-                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        Москва
-                    </div>
-                    <p class="project-desc">Ремонт атриума и террасы премиум-ресторана</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="KFC">
-                <div class="project-overlay">
-                    <span class="project-category">Фастфуд</span>
-                    <h3 class="project-title">KFC Тульская</h3>
-                    <div class="project-location">
-                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        Москва, ТЦ Тульская
-                    </div>
-                    <p class="project-desc">Строительство под сдачу в эксплуатацию</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Аквамарин">
-                <div class="project-overlay">
-                    <span class="project-category">Бизнес-центр класса А</span>
-                    <h3 class="project-title">Бизнес-центр Аквамарин</h3>
-                    <div class="project-location">
-                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        Москва
-                    </div>
-                    <p class="project-desc">Ремонт и обслуживание инженерных систем</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=800&q=80" alt="Винзавод">
-                <div class="project-overlay">
-                    <span class="project-category">Арт-пространство</span>
-                    <h3 class="project-title">Винзавод</h3>
-                    <div class="project-location">
-                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                        Москва
-                    </div>
-                    <p class="project-desc">Ремонт фасада и кровли, устройство мембраны</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80" alt="Тульский">
+            <div class="project-card" onclick="openModal('afi-dev')">
+                <img src="img/afi.jpg" alt="ТЦ АФИ девелопмент">
                 <div class="project-overlay">
                     <span class="project-category">Торговый центр</span>
-                    <h3 class="project-title">Торговый центр Тульский</h3>
+                    <h3 class="project-title">ТЦ АФИ девелопмент</h3>
                     <div class="project-location">
                         <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Москва
                     </div>
-                    <p class="project-desc">Ремонт и реконструкция торговых помещений</p>
+                    <p class="project-desc">Проектирование, поставка, монтаж, ремонт инженерных сетей, фасада, кровли и помещений</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                 </div>
             </div>
-            <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80" alt="Афи Тауер">
+            <div class="project-card" onclick="openModal('veb')">
+                <img src="img/veb.jpg" alt="Бизнес Центр ВЭБ">
                 <div class="project-overlay">
-                    <span class="project-category">Жилой комплекс</span>
-                    <h3 class="project-title">ЖК Афи Тауер</h3>
+                    <span class="project-category">Бизнес-центр</span>
+                    <h3 class="project-title">Бизнес Центр ВЭБ</h3>
                     <div class="project-location">
                         <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                         Москва
                     </div>
-                    <p class="project-desc">Комплексный ремонт жилых помещений</p>
+                    <p class="project-desc">Проектирование, поставка, монтаж, ремонт инженерных сетей, кровли и помещений</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('wrf')">
+                <img src="img/wrf.jpg" alt="WRF">
+                <div class="project-overlay">
+                    <span class="project-category">Ресторанный холдинг</span>
+                    <h3 class="project-title">White Rabbit Family</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва
+                    </div>
+                    <p class="project-desc">Проектирование, поставка, монтаж, ремонт инженерных систем, кровли, фасада, помещений и быстровозводимых конструкций</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('kfc')">
+                <img src="img/kfc.jpg" alt="KFC / РОСТИКС">
+                <div class="project-overlay">
+                    <span class="project-category">Рестораны</span>
+                    <h3 class="project-title">KFC / РОСТИКС</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва и регионы
+                    </div>
+                    <p class="project-desc">Проектирование, поставка, монтаж, ремонт инженерных систем, кровли, фасада, помещений и возведение быстровозводимых конструкций</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('zhk')">
+                <img src="img/zhk.jpg" alt="Жилые комплексы">
+                <div class="project-overlay">
+                    <span class="project-category">Жилой комплекс</span>
+                    <h3 class="project-title">ЖК — Жилые комплексы</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва
+                    </div>
+                    <p class="project-desc">Проектирование, поставка, монтаж, ремонт инженерных систем, кровли, фасада, помещений и возведение быстровозводимых конструкций</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('izhs')">
+                <img src="img/izhs.jpg" alt="ИЖС">
+                <div class="project-overlay">
+                    <span class="project-category">Индивидуальное строительство</span>
+                    <h3 class="project-title">ИЖС</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Московская область
+                    </div>
+                    <p class="project-desc">Проектирование, строительство и монтаж зданий и быстровозводимых строений</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('prom')">
+                <img src="img/prom.jpg" alt="Промышленные объекты">
+                <div class="project-overlay">
+                    <span class="project-category">Промышленные объекты</span>
+                    <h3 class="project-title">Промышленные объекты</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва и регионы
+                    </div>
+                    <p class="project-desc">Проектирование, поставка, монтаж, техническое обслуживание моечного оборудования и быстровозводимых конструкций</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Project Modal -->
+    <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <span class="modal-category" id="modalCategory"></span>
+                    <h3 class="modal-title" id="modalTitle"></h3>
+                    <div class="modal-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span id="modalLocation"></span>
+                    </div>
+                </div>
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="modal-gallery-label">Галерея проекта</div>
+                <div class="modal-gallery" id="modalGallery"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- About -->
     <section class="section" id="about">
@@ -1807,22 +2224,22 @@
         </div>
         <div style="overflow: hidden;">
             <div class="clients-marquee">
+                <div class="client-item">АФИ Девелопмент</div>
+                <div class="client-item">Бизнес Центр ВЭБ</div>
                 <div class="client-item">White Rabbit Family</div>
-                <div class="client-item">KFC</div>
-                <div class="client-item">Аквамарин</div>
-                <div class="client-item">Винзавод</div>
-                <div class="client-item">Тульский</div>
-                <div class="client-item">Афи Тауер</div>
-                <div class="client-item">Академик</div>
-                <div class="client-item">Новинский Пассаж</div>
+                <div class="client-item">KFC / РОСТИКС</div>
+                <div class="client-item">Жилые Комплексы</div>
+                <div class="client-item">ИЖС</div>
+                <div class="client-item">Промышленные объекты</div>
+                <div class="client-item">ЭКСИТ</div>
+                <div class="client-item">АФИ Девелопмент</div>
+                <div class="client-item">Бизнес Центр ВЭБ</div>
                 <div class="client-item">White Rabbit Family</div>
-                <div class="client-item">KFC</div>
-                <div class="client-item">Аквамарин</div>
-                <div class="client-item">Винзавод</div>
-                <div class="client-item">Тульский</div>
-                <div class="client-item">Афи Тауер</div>
-                <div class="client-item">Академик</div>
-                <div class="client-item">Новинский Пассаж</div>
+                <div class="client-item">KFC / РОСТИКС</div>
+                <div class="client-item">Жилые Комплексы</div>
+                <div class="client-item">ИЖС</div>
+                <div class="client-item">Промышленные объекты</div>
+                <div class="client-item">ЭКСИТ</div>
             </div>
         </div>
         <div class="testimonials-grid">
@@ -2034,6 +2451,150 @@
                 toast.classList.remove('show');
             }, 4000);
         }
+
+        // Project Modal
+        const projectData = {
+            'afi-dev': {
+                title: 'ТЦ АФИ девелопмент',
+                category: 'Торговый центр',
+                location: 'Москва и регионы',
+                image: 'img/afi.jpg',
+                desc: 'Комплексный проект для девелопера АФИ. В рамках сотрудничества выполнено полное проектирование инженерных систем, поставка оборудования, монтаж всех инженерных сетей, ремонт фасадов, кровли и внутренних помещений торговых центров. Работы проводились на нескольких объектах одновременно с соблюдением жестких дедлайнов девелопера.',
+                photos: [
+                    'img/afi.jpg',
+                    'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=400&q=80',
+                    'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&q=80',
+                    'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=400&q=80',
+                    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80'
+                ]
+            },
+            'veb': {
+                title: 'Бизнес Центр ВЭБ',
+                category: 'Бизнес-центр',
+                location: 'Москва',
+                image: 'img/veb.jpg',
+                desc: 'Комплексное проектирование, поставка и монтаж инженерных систем для бизнес-центра ВЭБ. Выполнен ремонт инженерных сетей, кровли и внутренних помещений. Проект включал модернизацию систем вентиляции и кондиционирования, электрических сетей, системы пожаротушения и автоматизации — все работы велись без остановки работы арендаторов.',
+                photos: [
+                    'img/veb.jpg',
+                    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80',
+                    'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80',
+                    'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=400&q=80',
+                    'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80'
+                ]
+            },
+            'wrf': {
+                title: 'White Rabbit Family',
+                category: 'Ресторанный холдинг',
+                location: 'Москва',
+                image: 'img/wrf.jpg',
+                desc: 'Многолетнее сотрудничество с крупнейшим ресторанным холдингом White Rabbit Family. Выполнено проектирование, поставка оборудования, монтаж инженерных систем, ремонт кровли, фасада и помещений, а также возведение быстровозводимых конструкций для нескольких ресторанов холдинга. Каждый объект — уникальный интерьер с премиальной отделкой.',
+                photos: [
+                    'img/wrf.jpg',
+                    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&q=80',
+                    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80',
+                    'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80',
+                    'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=400&q=80'
+                ]
+            },
+            'kfc': {
+                title: 'KFC / РОСТИКС',
+                category: 'Сеть ресторанов',
+                location: 'Москва и регионы',
+                image: 'img/kfc.jpg',
+                desc: 'Строительство функционирующих ресторанов KFC и РОСТИКС под ключ. Проектирование, поставка оборудования, монтаж инженерных систем, ремонт кровли, фасада и помещений, возведение быстровозводимых конструкций. Более 20 ресторанов построено по корпоративным стандартам сети с соблюдением всех технических регламентов и сроков открытия.',
+                photos: [
+                    'img/kfc.jpg',
+                    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&q=80',
+                    'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&q=80',
+                    'https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=400&q=80',
+                    'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=400&q=80'
+                ]
+            },
+            'zhk': {
+                title: 'ЖК — Жилые комплексы',
+                category: 'Жилой комплекс',
+                location: 'Москва и Московская область',
+                image: 'img/zhk.jpg',
+                desc: 'Комплексная работа с жилыми комплексами: проектирование инженерных систем, поставка оборудования, монтаж, ремонт инженерных сетей, кровли, фасадов и внутренних помещений, а также возведение быстровозводимых конструкций для общественных зон и коммерческих помещений в ЖК.',
+                photos: [
+                    'img/zhk.jpg',
+                    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=80',
+                    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80'
+                ]
+            },
+            'izhs': {
+                title: 'ИЖС — Индивидуальные жилищные строения',
+                category: 'Частное строительство',
+                location: 'Московская область',
+                image: 'img/izhs.jpg',
+                desc: 'Проектирование, строительство и монтаж индивидуальных домов и быстровозводимых строений. От коттеджей премиум-класса до функциональных хозпостроек — полный цикл работ от фундамента до кровли. Используем современные материалы и технологии, обеспечивая энергоэффективность и долговечность каждого объекта.',
+                photos: [
+                    'img/izhs.jpg',
+                    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&q=80'
+                ]
+            },
+            'prom': {
+                title: 'Промышленные объекты',
+                category: 'Промышленное строительство',
+                location: 'Москва и регионы',
+                image: 'img/prom.jpg',
+                desc: 'Проектирование, поставка и монтаж промышленного оборудования, техническое обслуживание моечного оборудования и быстровозводимых конструкций для промышленных объектов. Специализация на автомойках, складских комплексах и производственных помещениях. Полный цикл — от проектирования до сервисного обслуживания.',
+                photos: [
+                    'img/prom.jpg',
+                    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&q=80',
+                    'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&q=80',
+                    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&q=80',
+                    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80'
+                ]
+            }
+        };
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+
+            document.getElementById('modalImage').src = data.image;
+            document.getElementById('modalImage').alt = data.title;
+            document.getElementById('modalCategory').textContent = data.category;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalLocation').textContent = data.location;
+            document.getElementById('modalDesc').textContent = data.desc;
+
+            // Build gallery
+            const gallery = document.getElementById('modalGallery');
+            gallery.innerHTML = '';
+            data.photos.forEach((photo, index) => {
+                const img = document.createElement('img');
+                img.src = photo;
+                img.alt = data.title + ' фото ' + (index + 1);
+                img.className = index === 0 ? 'active' : '';
+                img.onclick = () => {
+                    document.getElementById('modalImage').src = photo;
+                    gallery.querySelectorAll('img').forEach(g => g.classList.remove('active'));
+                    img.classList.add('active');
+                };
+                gallery.appendChild(img);
+            });
+
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Keyboard close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
 
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
