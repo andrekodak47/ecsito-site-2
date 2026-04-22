@@ -1,0 +1,2978 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЭКСИТ - Строительно-инжиниринговая компания</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #F5F5F7;
+            color: #1A1A1A;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F5F5F7;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #C0C0C8;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2277B5;
+        }
+
+        ::selection {
+            background: rgba(34, 119, 181, 0.2);
+            color: #1A1A1A;
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 4%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+        
+        /* Nav default (over hero dark bg) - white theme */
+        .nav .nav-logo-text {
+            color: #FFFFFF;
+        }
+
+        .nav .nav-logo-text small {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .nav .nav-links a {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .nav .nav-links a:hover {
+            color: #FFFFFF;
+        }
+
+        .nav .nav-mobile-btn {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav .nav-mobile-btn svg {
+            stroke: #FFFFFF;
+        }
+
+        /* Nav scrolled - dark text on light bg */
+        .nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .nav.scrolled .nav-logo-text {
+            color: #1A1A1A;
+        }
+
+        .nav.scrolled .nav-logo-text small {
+            color: rgba(0,0,0,0.45);
+        }
+
+        .nav.scrolled .nav-links a {
+            color: rgba(0,0,0,0.65);
+        }
+
+        .nav.scrolled .nav-links a:hover {
+            color: #1A1A1A;
+        }
+
+        .nav.scrolled .nav-mobile-btn {
+            background: rgba(0,0,0,0.05);
+        }
+
+        .nav.scrolled .nav-mobile-btn svg {
+            stroke: #1A1A1A;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 44px;
+            height: 44px;
+            background: #2277B5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-logo-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .nav-logo-text {
+            transition: color 0.3s;
+        }
+
+        .nav-logo-text span {
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .nav-logo-text small {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2277B5;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: #2277B5;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: #00D4FF;
+            transform: translateY(-2px);
+        }
+
+        .nav-mobile-btn {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-mobile-btn svg {
+            width: 24px;
+            height: 24px;
+            transition: stroke 0.3s;
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Force reload, no cache */
+            image-rendering: -webkit-optimize-contrast;
+        }
+        
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5), rgba(0,0,0,0.9));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 120px 4% 200px;
+            max-width: 900px;
+        }
+        
+        .hero-title {
+            font-size: clamp(64px, 12vw, 140px);
+            font-weight: 900;
+            letter-spacing: -4px;
+            margin-bottom: 16px;
+            color: #FFFFFF;
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .hero-tagline {
+            font-size: clamp(14px, 2vw, 18px);
+            color: rgba(255,255,255,0.6);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .btn-primary {
+            background: #2277B5;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background: #00D4FF;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(34, 119, 181, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        .hero-stats {
+            position: absolute;
+            bottom: 40px;
+            left: 4%;
+            right: 4%;
+            z-index: 10;
+        }
+        
+        .hero-stats-inner {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 24px 32px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .hero-stat {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .hero-stat-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(34, 119, 181, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-stat-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: #2277B5;
+            fill: none;
+        }
+        
+        .hero-stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+        
+        /* Section */
+        .section {
+            padding: 100px 4%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Dot grid pattern overlay */
+        .section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(34,119,181,0.12) 1px, transparent 1px);
+            background-size: 28px 28px;
+            pointer-events: none;
+            z-index: 0;
+            mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+        }
+
+        /* Light sections */
+        .section:nth-child(odd) {
+            background: linear-gradient(160deg, #F0F4F8 0%, #E8EFF5 40%, #F5F8FB 100%);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(160deg, #FFFFFF 0%, #F7FAFD 50%, #FFFFFF 100%);
+        }
+
+        /* Colored accent blobs */
+        .section::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+            top: -100px;
+            right: -150px;
+            background: #2277B5;
+        }
+
+        .section:nth-child(even)::after {
+            background: #00D4FF;
+            top: auto;
+            bottom: -150px;
+            right: auto;
+            left: -200px;
+        }
+
+        /* Wavy section dividers */
+        .section-divider {
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .section-divider.top {
+            top: -1px;
+        }
+
+        .section-divider.bottom {
+            bottom: -1px;
+            transform: rotate(180deg);
+        }
+
+        .section-divider svg {
+            display: block;
+            width: 100%;
+            height: 60px;
+        }
+
+        /* Content above decorations */
+        .section > *:not(.section-divider) {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #2277B5;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .section-title span {
+            background: linear-gradient(135deg, #2277B5, #00D4FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-desc {
+            color: rgba(0,0,0,0.55);
+            font-size: 16px;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-size: clamp(24px, 3vw, 36px);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            color: rgba(0,0,0,0.65);
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .about-years {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+
+        .about-years-num {
+            font-size: 72px;
+            font-weight: 900;
+            color: #2277B5;
+            line-height: 1;
+        }
+
+        .about-years-text {
+            color: rgba(0,0,0,0.75);
+        }
+
+        .about-years-text strong {
+            display: block;
+            color: #1A1A1A;
+            font-size: 18px;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .about-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: #2277B5;
+            padding: 20px 30px;
+            border-radius: 12px;
+            color: #FFFFFF;
+        }
+
+        .about-badge-num {
+            font-size: 36px;
+            font-weight: 900;
+        }
+
+        .about-badge-text {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 60px auto 0;
+        }
+        
+        .stat-card {
+            padding: 24px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .stat-card:hover {
+            background: #FFFFFF;
+            box-shadow: 0 8px 30px rgba(34, 119, 181, 0.12), 0 2px 8px rgba(0,0,0,0.06);
+            transform: translateY(-4px);
+        }
+
+        .stat-card-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #1A1A1A;
+        }
+
+        .stat-card-label {
+            font-size: 12px;
+            color: rgba(0,0,0,0.5);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            padding: 32px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 20px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .service-card:hover {
+            background: #FFFFFF;
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(34, 119, 181, 0.1), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(34, 119, 181, 0.08), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(34, 119, 181, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: #2277B5;
+            fill: none;
+        }
+
+        .service-card:hover .service-icon {
+            background: rgba(34, 119, 181, 0.2);
+            transform: scale(1.1);
+        }
+
+        .service-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover .service-title {
+            color: #2277B5;
+        }
+
+        .service-desc {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-tag {
+            padding: 4px 12px;
+            background: #F5F5F7;
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 20px;
+            font-size: 11px;
+            color: rgba(0,0,0,0.6);
+        }
+        
+        /* Portfolio */
+        .portfolio-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 20px 4% 40px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .portfolio-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .portfolio-scroll::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 3px;
+        }
+
+        .portfolio-scroll::-webkit-scrollbar-thumb {
+            background: rgba(34, 119, 181, 0.5);
+            border-radius: 3px;
+        }
+        
+        .project-card {
+            flex: 0 0 380px;
+            height: 480px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            scroll-snap-align: start;
+            cursor: pointer;
+        }
+        
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 28px;
+        }
+        
+        .project-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #2277B5;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            width: fit-content;
+            color: #FFFFFF;
+        }
+        
+        .project-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+        }
+        
+        .project-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 8px;
+        }
+        
+        .project-location svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+        }
+        
+        .project-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .project-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 8px 16px;
+            background: rgba(34, 119, 181, 0.85);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #FFFFFF;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.35s ease;
+        }
+
+        .project-card:hover .project-more {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-more svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        /* Why Us */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .why-card {
+            padding: 32px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.4s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .why-card:hover {
+            box-shadow: 0 12px 40px rgba(34, 119, 181, 0.1), 0 4px 12px rgba(0,0,0,0.04);
+            transform: translateY(-5px);
+        }
+
+        .why-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(34, 119, 181, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .why-card:hover .why-icon {
+            background: #2277B5;
+        }
+
+        .why-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: #2277B5;
+            fill: none;
+            transition: all 0.3s;
+        }
+
+        .why-card:hover .why-icon svg {
+            stroke: white;
+        }
+
+        .why-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .why-card:hover .why-title {
+            color: #2277B5;
+        }
+
+        .why-desc {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+        }
+
+        .why-num {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(0,0,0,0.04);
+        }
+
+        .why-card:hover .why-num {
+            color: rgba(34, 119, 181, 0.1);
+        }
+
+        /* Process */
+        .process-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 27px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #2277B5, #00D4FF, rgba(34,119,181,0.2));
+            border-radius: 2px;
+        }
+
+        .process-step {
+            display: flex;
+            gap: 32px;
+            padding: 24px 0;
+            position: relative;
+        }
+
+        .process-icon {
+            width: 58px;
+            height: 58px;
+            background: #FFFFFF;
+            border: 3px solid #2277B5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(34, 119, 181, 0.1);
+        }
+
+        .process-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: #2277B5;
+            fill: none;
+        }
+
+        .process-content {
+            padding-top: 8px;
+        }
+
+        .process-num {
+            font-size: 42px;
+            font-weight: 900;
+            color: rgba(0,0,0,0.06);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .process-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .process-desc {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+            max-width: 400px;
+        }
+        
+        /* Clients */
+        .clients-marquee {
+            display: flex;
+            gap: 20px;
+            animation: marquee 30s linear infinite;
+            width: max-content;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .client-item {
+            padding: 16px 32px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.7);
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .testimonial-card {
+            padding: 32px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.4s;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(34, 119, 181, 0.1), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        .testimonial-quote-icon {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .testimonial-quote-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: #1A1A1A;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: rgba(0,0,0,0.7);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 20px;
+            margin-top: auto;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            background: #2277B5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .author-info-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+
+        .author-info-role {
+            font-size: 13px;
+            color: rgba(0,0,0,0.5);
+        }
+        
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .contact-form {
+            padding: 40px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .contact-form h3 {
+            font-size: 22px;
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: rgba(0,0,0,0.55);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: #F5F5F7;
+            border: 1px solid rgba(0,0,0,0.12);
+            border-radius: 8px;
+            color: #1A1A1A;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2277B5;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(0,0,0,0.4);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-info h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+
+        .contact-info > p {
+            color: rgba(0,0,0,0.6);
+            margin-bottom: 32px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #FFFFFF;
+            border: none;
+            border-radius: 14px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+        }
+
+        .contact-item:hover {
+            background: #FFFFFF;
+            box-shadow: 0 6px 20px rgba(34, 119, 181, 0.1), 0 2px 6px rgba(0,0,0,0.04);
+            transform: translateX(4px);
+        }
+
+        .contact-item:hover .contact-value {
+            color: #2277B5;
+        }
+
+        .contact-icon-small {
+            width: 44px;
+            height: 44px;
+            background: rgba(34, 119, 181, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon-small svg {
+            width: 20px;
+            height: 20px;
+            stroke: #2277B5;
+            fill: none;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: rgba(0,0,0,0.4);
+        }
+
+        .contact-value {
+            font-weight: 600;
+            color: #1A1A1A;
+            transition: color 0.3s;
+        }
+        
+        .contact-hours {
+            padding: 20px;
+            background: rgba(34, 119, 181, 0.1);
+            border: 1px solid rgba(34, 119, 181, 0.2);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .contact-hours-label {
+            font-size: 12px;
+            color: #2277B5;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 60px 4%;
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            color: #FFFFFF;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand-icon {
+            width: 48px;
+            height: 48px;
+            background: #2277B5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-brand-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .footer-brand-text span {
+            display: block;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .footer-brand-text small {
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-desc {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            margin-bottom: 16px;
+            max-width: 280px;
+        }
+
+        .footer-requisites {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            margin-top: 0;
+            color: #FFFFFF;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #2277B5;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .footer-top:hover {
+            color: #2277B5;
+        }
+
+        .footer-top-btn {
+            width: 32px;
+            height: 32px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-top-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+        }
+
+        /* Project Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background: #FFFFFF;
+            border-radius: 24px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+            transform: translateY(40px) scale(0.96);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.95);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+
+        .modal-close:hover {
+            background: #fff;
+            transform: rotate(90deg);
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: #1A1A1A;
+            stroke-width: 2;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border-radius: 24px 24px 0 0;
+        }
+
+        .modal-body {
+            padding: 32px 40px 40px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .modal-header {
+            margin-bottom: 24px;
+        }
+
+        .modal-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: #2277B5;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1A1A1A;
+        }
+
+        .modal-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: rgba(0,0,0,0.55);
+        }
+
+        .modal-location svg {
+            width: 16px;
+            height: 16px;
+            stroke: #2277B5;
+            fill: none;
+        }
+
+        .modal-desc {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(0,0,0,0.7);
+            margin-bottom: 28px;
+        }
+
+        .modal-gallery-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #2277B5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+        }
+
+        .modal-gallery {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x mandatory;
+        }
+
+        .modal-gallery::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .modal-gallery::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 2px;
+        }
+
+        .modal-gallery::-webkit-scrollbar-thumb {
+            background: rgba(34, 119, 181, 0.4);
+            border-radius: 2px;
+        }
+
+        .modal-gallery img {
+            flex: 0 0 140px;
+            width: 140px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            scroll-snap-align: start;
+            transition: all 0.3s ease;
+            opacity: 0.75;
+            border: 2px solid transparent;
+        }
+
+        .modal-gallery img:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .modal-gallery img.active {
+            opacity: 1;
+            border-color: #2277B5;
+            box-shadow: 0 4px 16px rgba(34, 119, 181, 0.25);
+        }
+
+        @media (max-width: 640px) {
+            .modal-overlay {
+                padding: 0;
+            }
+            .modal {
+                max-height: 100vh;
+                border-radius: 0;
+            }
+            .modal-image {
+                height: 200px;
+            }
+            .modal-body {
+                padding: 24px;
+            }
+            .modal-title {
+                font-size: 22px;
+            }
+            .modal-gallery img {
+                flex: 0 0 120px;
+                width: 120px;
+                height: 85px;
+            }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 16px 24px;
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            color: #1A1A1A;
+            font-size: 14px;
+            z-index: 10000;
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu a {
+            color: #1A1A1A;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .mobile-menu .btn-primary {
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+            
+            .nav-mobile-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .services-grid, .why-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100dvh;
+                min-height: 100svh;
+                padding: 0 0 20px;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: stretch;
+            }
+            
+            .hero-content {
+                padding: 100px 4% 16px;
+                margin: auto 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .hero-stats {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                margin-top: 0;
+                padding: 0 4%;
+            }
+            
+            .hero-stats-inner {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 14px 16px;
+                opacity: 1;
+                transform: none;
+            }
+            
+            .hero-stat {
+                justify-content: flex-start;
+                gap: 12px;
+            }
+            
+            .hero-stat-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-stat-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .hero-stat-value {
+                font-size: 22px;
+            }
+            
+            .hero-title {
+                font-size: clamp(42px, 14vw, 64px);
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(16px, 4vw, 20px);
+            }
+            
+            .hero-tagline {
+                font-size: 14px;
+            }
+            
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .services-grid, .why-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+            
+            .project-card {
+                flex: 0 0 300px;
+                height: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                letter-spacing: -2px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-stats-inner {
+                padding: 12px 16px;
+            }
+            
+            .hero-stat-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-stat-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .hero-stat-value {
+                font-size: 22px;
+            }
+        }
+        
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* Floating Messenger Buttons */
+        .messenger-panel {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .messenger-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+        }
+
+        .messenger-btn.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .messenger-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+        }
+
+        .messenger-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .messenger-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .messenger-btn.whatsapp:hover {
+            background: #1ebe57;
+        }
+
+        .messenger-btn.telegram {
+            background: #0088CC;
+        }
+
+        .messenger-btn.telegram:hover {
+            background: #0077b3;
+        }
+
+        .messenger-btn.vk {
+            background: #0077FF;
+        }
+
+        .messenger-btn.vk:hover {
+            background: #0066dd;
+        }
+
+        /* Messenger tooltip */
+        .messenger-btn::before {
+            content: attr(data-label);
+            position: absolute;
+            right: 68px;
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            background: #1A1A1A;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .messenger-btn::after {
+            content: '';
+            position: absolute;
+            right: 62px;
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            border: 6px solid transparent;
+            border-left-color: #1A1A1A;
+            opacity: 0;
+            transition: all 0.25s ease;
+        }
+
+        .messenger-btn:hover::before,
+        .messenger-btn:hover::after {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        /* Pulse animation for main trigger */
+        .messenger-btn.pulse {
+            animation: messengerPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes messengerPulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+            50% { box-shadow: 0 4px 16px rgba(0,0,0,0.2), 0 0 0 8px rgba(34, 119, 181, 0.15); }
+        }
+
+        /* Mobile: smaller buttons */
+        @media (max-width: 768px) {
+            .messenger-panel {
+                bottom: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+            .messenger-btn {
+                width: 50px;
+                height: 50px;
+            }
+            .messenger-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+            .messenger-btn::before,
+            .messenger-btn::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast -->
+    <div class="toast" id="toast">Заявка отправлена! Мы свяжемся с вами.</div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#portfolio" onclick="closeMobileMenu()">Портфолио</a>
+        <a href="#about" onclick="closeMobileMenu()">О компании</a>
+        <a href="#services" onclick="closeMobileMenu()">Услуги</a>
+        <a href="#why-us" onclick="closeMobileMenu()">Преимущества</a>
+        <a href="#contact" onclick="closeMobileMenu()">Контакты</a>
+        <a href="#contact" class="btn-primary" onclick="closeMobileMenu()">Оставить заявку</a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo">
+            <img src="logo.png" alt="ЭКСИТ Логотип" style="height: 44px; width: auto; max-width: 150px; object-fit: contain; margin-right: 8px; border-radius: 8px;">
+            <div class="nav-logo-text">
+                <span>ЭКСИТ</span>
+                <small>ECSITO</small>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="#portfolio">Портфолио</a>
+            <a href="#about">О компании</a>
+            <a href="#services">Услуги</a>
+            <a href="#why-us">Преимущества</a>
+            <a href="#contact">Контакты</a>
+        </div>
+        <a href="#contact" class="nav-cta">Оставить заявку</a>
+        <button class="nav-mobile-btn" onclick="toggleMobileMenu()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="img/city-map-bg.jpg?v=2" alt="Карта города">
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">ЭКСИТ</h1>
+            <p class="hero-subtitle">Строительно-инжиниринговая компания</p>
+            <p class="hero-tagline">25 лет создаем пространства, в которых живут и работают люди</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Получить консультацию
+                </a>
+                <a href="#portfolio" class="btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    Наши проекты
+                </a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stats-inner">
+                <div class="hero-stat">
+                    <div class="hero-stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div>
+                        <div class="hero-stat-value">25+</div>
+                        <div class="hero-stat-label">лет опыта</div>
+                    </div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <div>
+                        <div class="hero-stat-value">150+</div>
+                        <div class="hero-stat-label">объектов</div>
+                    </div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <div>
+                        <div class="hero-stat-value">Под ключ</div>
+                        <div class="hero-stat-label">комплексный подход</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="section" id="portfolio">
+        <div class="section-divider top">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,0 L0,0 Z" fill="rgba(0,0,0,0.03)"></path></svg>
+        </div>
+        <div class="section-header reveal">
+            <div class="section-label">Портфолио</div>
+            <h2 class="section-title">Реализованные <span>проекты</span></h2>
+            <p class="section-desc">Экономия заказчикам более 600 млн рублей благодаря точным инженерным решениям</p>
+        </div>
+        <div class="portfolio-scroll">
+            <div class="project-card" onclick="openModal('afi-dev')">
+                <img src="img/afi.jpg" alt="ТЦ АФИ девелопмент">
+                <div class="project-overlay">
+                    <span class="project-category">Торговый центр</span>
+                    <h3 class="project-title">ТЦ АФИ девелопмент</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва
+                    </div>
+                    <p class="project-desc">Демпфирующие швы фасада гостиницы Аквамарин — экономия 50 млн руб. Мембранная кровля БЦ Ривер Стейшен — экономия 30 млн руб.</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('veb')">
+                <img src="img/veb.jpg" alt="Бизнес Центр ВЭБ">
+                <div class="project-overlay">
+                    <span class="project-category">Бизнес-центр</span>
+                    <h3 class="project-title">Бизнес Центр ВЭБ</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва
+                    </div>
+                    <p class="project-desc">Герметизация атриума — экономия 500 млн руб. Инженерные системы ресторана Рыба Моя — экономия 20 млн руб.</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('wrf')">
+                <img src="img/wrf.jpg" alt="WRF">
+                <div class="project-overlay">
+                    <span class="project-category">Ресторанный холдинг</span>
+                    <h3 class="project-title">White Rabbit Family</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва
+                    </div>
+                    <p class="project-desc">Веранда ресторана Гвидон — ежегодная экономия 3 млн руб. Веранда White Rabbit — экономия 5 млн руб.</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('kfc')">
+                <img src="img/kfc.jpg" alt="KFC / РОСТИКС">
+                <div class="project-overlay">
+                    <span class="project-category">Рестораны</span>
+                    <h3 class="project-title">KFC / РОСТИКС</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва и регионы
+                    </div>
+                    <p class="project-desc">Перенос лестницы на антресоль — экономия 5 млн руб. Инженерные системы ТЦ Тульский — экономия 15 млн руб.</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('zhk')">
+                <img src="img/zhk.jpg" alt="Общественные объекты">
+                <div class="project-overlay">
+                    <span class="project-category">Общественные объекты</span>
+                    <h3 class="project-title">Общественные объекты</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва и регионы
+                    </div>
+                    <p class="project-desc">Мобильные здания на основе морских контейнеров: гостиницы, офисы, кафе, бани от 12,7 м² с полным оснащением</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('izhs')">
+                <img src="img/izhs.jpg" alt="ИЖС">
+                <div class="project-overlay">
+                    <span class="project-category">Индивидуальное строительство</span>
+                    <h3 class="project-title">ИЖС</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Московская область
+                    </div>
+                    <p class="project-desc">Мобильные дома и бани на основе морских контейнеров от 12,7 м² со всеми инженерными системами для проживания и отдыха</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+            <div class="project-card" onclick="openModal('prom')">
+                <img src="img/prom.jpg" alt="Автомоечные комплексы">
+                <div class="project-overlay">
+                    <span class="project-category">Автомоечные комплексы</span>
+                    <h3 class="project-title">Автомоечные комплексы</h3>
+                    <div class="project-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Москва и регионы
+                    </div>
+                    <p class="project-desc">Быстровозводимые мойки с полным комплексом инженерных систем, моечным оборудованием и очистными сооружениями</p>
+                    <span class="project-more">Подробнее <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <img class="modal-image" id="modalImage" src="" alt="">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <span class="modal-category" id="modalCategory"></span>
+                    <h3 class="modal-title" id="modalTitle"></h3>
+                    <div class="modal-location">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span id="modalLocation"></span>
+                    </div>
+                </div>
+                <p class="modal-desc" id="modalDesc"></p>
+                <div class="modal-gallery-label">Галерея проекта</div>
+                <div class="modal-gallery" id="modalGallery"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="section-divider top">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,0 720,60 1080,30 C1260,10 1380,40 1440,20 L1440,0 L0,0 Z" fill="rgba(0,0,0,0.03)"></path></svg>
+        </div>
+        <div class="about-grid">
+            <div class="about-content reveal">
+                <div class="section-label">О компании</div>
+                <h2>Создаем надежные решения для <span>сложных задач</span></h2>
+                <p>Мы — команда профессионалов с 25-летним опытом в строительстве и инжиниринге. Реализуем проекты любой сложности: от ресторанов премиум-класса до бизнес-центров и жилых комплексов.</p>
+                <p>Наш подход основан на глубоком понимании потребностей клиента, использовании современных технологий и неуклонном соблюдении сроков.</p>
+                <div class="about-years">
+                    <div class="about-years-num">25</div>
+                    <div class="about-years-text">
+                        <strong>лет успешной работы</strong>
+                        в строительной отрасли
+                    </div>
+                </div>
+            </div>
+            <div class="about-image reveal">
+                <img src="img/aquamarine.jpg" alt="БЦ Аквамарин">
+                <div class="about-badge">
+                    <div class="about-badge-num">25+</div>
+                    <div class="about-badge-text">лет опыта</div>
+                </div>
+            </div>
+        </div>
+        <div class="stats-row">
+            <div class="stat-card reveal">
+                <div class="stat-card-value">25+</div>
+                <div class="stat-card-label">Лет на рынке</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-card-value">150+</div>
+                <div class="stat-card-label">Реализованных объектов</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-card-value">100+</div>
+                <div class="stat-card-label">Постоянных клиентов</div>
+            </div>
+            <div class="stat-card reveal">
+                <div class="stat-card-value">50K+</div>
+                <div class="stat-card-label">Кв. метров построено</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="section-divider top">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,20 C180,50 540,0 720,30 C900,60 1260,10 1440,40 L1440,0 L0,0 Z" fill="rgba(0,0,0,0.03)"></path></svg>
+        </div>
+        <div class="section-header reveal">
+            <div class="section-label">Услуги</div>
+            <h2 class="section-title">Комплексные решения <span>под ключ</span></h2>
+            <p class="section-desc">Полный спектр строительно-монтажных работ — от проектирования до ввода объекта в эксплуатацию</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <h3 class="service-title">Проектирование</h3>
+                <p class="service-desc">Разработка проектной документации всех разделов: архитектурные решения, конструкции, инженерные системы.</p>
+                <div class="service-tags">
+                    <span class="service-tag">АР</span>
+                    <span class="service-tag">КР</span>
+                    <span class="service-tag">ЭОМ</span>
+                    <span class="service-tag">ВК</span>
+                    <span class="service-tag">ОВиК</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg>
+                </div>
+                <h3 class="service-title">Строительство</h3>
+                <p class="service-desc">Строительство объектов с нуля до сдачи. Полный цикл работ от фундамента до кровли.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Монолит</span>
+                    <span class="service-tag">Каркас</span>
+                    <span class="service-tag">Фасады</span>
+                    <span class="service-tag">Кровля</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <h3 class="service-title">Ремонт и монтаж</h3>
+                <p class="service-desc">Капитальный ремонт и монтаж инженерных систем. Реконструкция существующих объектов.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Ремонт</span>
+                    <span class="service-tag">Монтаж</span>
+                    <span class="service-tag">Отделка</span>
+                    <span class="service-tag">Реконструкция</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                </div>
+                <h3 class="service-title">Поставка оборудования</h3>
+                <p class="service-desc">Подбор и поставка качественного оборудования от проверенных производителей.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Вентиляция</span>
+                    <span class="service-tag">Отопление</span>
+                    <span class="service-tag">Электрика</span>
+                    <span class="service-tag">Сантехника</span>
+                </div>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                </div>
+                <h3 class="service-title">Запуск в эксплуатацию</h3>
+                <p class="service-desc">Пусконаладочные работы, получение разрешений и ввод объекта в эксплуатацию.</p>
+                <div class="service-tags">
+                    <span class="service-tag">Пусконаладка</span>
+                    <span class="service-tag">Документация</span>
+                    <span class="service-tag">Согласования</span>
+                    <span class="service-tag">Сдача</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Why Us -->
+    <section class="section" id="why-us">
+        <div class="section-divider top">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,40 C240,10 480,50 720,20 C960,50 1200,10 1440,35 L1440,0 L0,0 Z" fill="rgba(0,0,0,0.03)"></path></svg>
+        </div>
+        <div class="section-header reveal">
+            <div class="section-label">Преимущества</div>
+            <h2 class="section-title">Почему выбирают <span>ЭКСИТ</span></h2>
+            <p class="section-desc">Наши ключевые преимущества, которые делают нас надежным партнером в строительстве</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card reveal">
+                <div class="why-num">01</div>
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                </div>
+                <h3 class="why-title">Высокая квалификация</h3>
+                <p class="why-desc">Команда экспертов с многолетним опытом в строительстве и инжиниринге. Постоянное повышение квалификации.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-num">02</div>
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                </div>
+                <h3 class="why-title">Комплексный подход</h3>
+                <p class="why-desc">Все этапы работы — от проектирования до запуска в эксплуатацию. Единая ответственность за результат.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-num">03</div>
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </div>
+                <h3 class="why-title">Гибкость</h3>
+                <p class="why-desc">Адаптируемся под требования каждого клиента. Индивидуальные решения для любых задач.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-num">04</div>
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3 class="why-title">Ответственность</h3>
+                <p class="why-desc">Гарантируем качество и соблюдение сроков. Страхование и гарантии на все виды работ.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-num">05</div>
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <h3 class="why-title">Опыт с крупными объектами</h3>
+                <p class="why-desc">Работаем с объектами любой сложности: от ресторанов до бизнес-центров и жилых комплексов.</p>
+            </div>
+            <div class="why-card reveal">
+                <div class="why-num">06</div>
+                <div class="why-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                </div>
+                <h3 class="why-title">Поддержка 24/7</h3>
+                <p class="why-desc">Всегда на связи с клиентом. Оперативное реагирование на любые вопросы и задачи.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section" id="process">
+        <div class="section-divider top">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,25 C360,55 720,5 1080,35 C1260,50 1380,15 1440,30 L1440,0 L0,0 Z" fill="rgba(0,0,0,0.03)"></path></svg>
+        </div>
+        <div class="section-header reveal">
+            <div class="section-label">Процесс</div>
+            <h2 class="section-title">Как мы <span>работаем</span></h2>
+            <p class="section-desc">Прозрачный и понятный процесс работы от первой заявки до сдачи объекта</p>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step reveal">
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="process-content">
+                    <div class="process-num">01</div>
+                    <h3 class="process-title">Заявка</h3>
+                    <p class="process-desc">Оставляете заявку на сайте или звоните нам. Мы оперативно связываемся с вами для обсуждения проекта.</p>
+                </div>
+            </div>
+            <div class="process-step reveal">
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                </div>
+                <div class="process-content">
+                    <div class="process-num">02</div>
+                    <h3 class="process-title">Консультация</h3>
+                    <p class="process-desc">Проводим детальную консультацию, выясняем все требования и пожелания к проекту.</p>
+                </div>
+            </div>
+            <div class="process-step reveal">
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                </div>
+                <div class="process-content">
+                    <div class="process-num">03</div>
+                    <h3 class="process-title">Расчет</h3>
+                    <p class="process-desc">Готовим детальную смету с прозрачным ценообразованием и сроками выполнения работ.</p>
+                </div>
+            </div>
+            <div class="process-step reveal">
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24"><path d="M2 22h20V2z"/></svg>
+                </div>
+                <div class="process-content">
+                    <div class="process-num">04</div>
+                    <h3 class="process-title">Реализация</h3>
+                    <p class="process-desc">Выполняем все работы по договору с соблюдением сроков и качественных стандартов.</p>
+                </div>
+            </div>
+            <div class="process-step reveal">
+                <div class="process-icon">
+                    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div class="process-content">
+                    <div class="process-num">05</div>
+                    <h3 class="process-title">Сдача</h3>
+                    <p class="process-desc">Передаем готовый объект с полным пакетом документации и гарантийными обязательствами.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients -->
+    <section class="section" id="clients">
+        <div class="section-divider top">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,35 C240,5 480,55 720,25 C960,55 1200,5 1440,30 L1440,0 L0,0 Z" fill="rgba(0,0,0,0.03)"></path></svg>
+        </div>
+        <div class="section-header reveal">
+            <div class="section-label">Клиенты</div>
+            <h2 class="section-title">Нам <span>доверяют</span></h2>
+            <p class="section-desc">Сотрудничаем с ведущими компаниями в сфере ресторанного бизнеса, девелопмента и ритейла</p>
+        </div>
+        <div style="overflow: hidden;">
+            <div class="clients-marquee">
+                <div class="client-item">АФИ Девелопмент</div>
+                <div class="client-item">Бизнес Центр ВЭБ</div>
+                <div class="client-item">White Rabbit Family</div>
+                <div class="client-item">KFC / РОСТИКС</div>
+                <div class="client-item">Жилые Комплексы</div>
+                <div class="client-item">ИЖС</div>
+                <div class="client-item">Промышленные объекты</div>
+                <div class="client-item">ЭКСИТ</div>
+                <div class="client-item">АФИ Девелопмент</div>
+                <div class="client-item">Бизнес Центр ВЭБ</div>
+                <div class="client-item">White Rabbit Family</div>
+                <div class="client-item">KFC / РОСТИКС</div>
+                <div class="client-item">Жилые Комплексы</div>
+                <div class="client-item">ИЖС</div>
+                <div class="client-item">Промышленные объекты</div>
+                <div class="client-item">ЭКСИТ</div>
+            </div>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <div class="testimonial-quote-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                </div>
+                <div class="testimonial-text">«Работаем с ЭКСИТ уже более 5 лет. Команда неизменно демонстрирует высочайший уровень профессионализма при реализации сложных проектов под ключ. Качество строительно-монтажных работ всегда на высоте.»</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">WRF</div>
+                    <div class="author-info">
+                        <div class="author-info-name">White Rabbit Family</div>
+                        <div class="author-info-role">Ресторанный холдинг</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-quote-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                </div>
+                <div class="testimonial-text">«Благодарим компанию ЭКСИТ за своевременный ввод в эксплуатацию нашего флагманского объекта. Работы выполнены с четким соблюдением всех жестких корпоративных стандартов и сроков.»</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background: #E03A3E;">KFC</div>
+                    <div class="author-info">
+                        <div class="author-info-name">KFC RUSSIA</div>
+                        <div class="author-info-role">Сеть ресторанов</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card reveal">
+                <div class="testimonial-quote-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                </div>
+                <div class="testimonial-text">«Для нашего бизнес-центра требовалась сложная модернизация инженерных систем без остановки деятельности арендаторов. ЭКСИТ справились с задачей безупречно и аккуратно.»</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background: #1D3A5F;">АКВ</div>
+                    <div class="author-info">
+                        <div class="author-info-name">БЦ Аквамарин</div>
+                        <div class="author-info-role">Класс A</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="section-divider top">
+            <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,0 720,60 1080,20 C1260,5 1380,45 1440,25 L1440,0 L0,0 Z" fill="rgba(0,0,0,0.03)"></path></svg>
+        </div>
+        <div class="section-header reveal">
+            <h2 class="section-title">Готовы начать <span>проект?</span></h2>
+            <p class="section-desc">Оставьте заявку — рассчитаем стоимость и сроки выполнения вашего проекта в течение 24 часов</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-form reveal">
+                <h3>Оставить заявку</h3>
+                <form id="contactForm" action="https://formsubmit.co/ajax/ecsito@mail.ru" method="POST">
+                    <input type="hidden" name="_subject" value="Новая заявка с сайта ЭКСИТ">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Ваше имя *</label>
+                            <input type="text" name="Имя" placeholder="Иван Иванов" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Телефон *</label>
+                            <input type="tel" name="Телефон" placeholder="+7 (999) 999-99-99" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="Email" placeholder="example@mail.ru">
+                    </div>
+                    <div class="form-group">
+                        <label>Описание проекта</label>
+                        <textarea name="Сообщение" placeholder="Расскажите о вашем проекте..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%;" id="submitBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        <span id="btnText">Отправить заявку</span>
+                    </button>
+                    <p id="formStatus" style="margin-top: 12px; font-size: 14px; text-align: center; display: none;"></p>
+                </form>
+            </div>
+            <div class="contact-info reveal">
+                <h3>Контактная информация</h3>
+                <p>Свяжитесь с нами любым удобным способом. Мы всегда на связи и готовы ответить на все ваши вопросы.</p>
+                <a href="tel:+79150077473" class="contact-item">
+                    <div class="contact-icon-small">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Телефон</div>
+                        <div class="contact-value">+7 (915) 007-74-73</div>
+                    </div>
+                </a>
+                <a href="mailto:ecsito@mail.ru" class="contact-item">
+                    <div class="contact-icon-small">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">ecsito@mail.ru</div>
+                    </div>
+                </a>
+                <div class="contact-item">
+                    <div class="contact-icon-small">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Адрес</div>
+                        <div class="contact-value">г. Москва, ул. Молдавская, д. 2</div>
+                    </div>
+                </div>
+                <a href="https://t.me/ecsito" class="contact-item">
+                    <div class="contact-icon-small">
+                        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Telegram</div>
+                        <div class="contact-value">@ecsito</div>
+                    </div>
+                </a>
+                <a href="https://vk.com/ecsito" target="_blank" class="contact-item">
+                    <div class="contact-icon-small">
+                        <span style="color: #2277B5; font-weight: 800; font-size: 14px; font-family: 'Inter', sans-serif;">VK</span>
+                    </div>
+                    <div>
+                        <div class="contact-label">ВКонтакте</div>
+                        <div class="contact-value">vk.com/ecsito</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <a href="#" class="footer-brand" style="text-decoration: none;">
+                    <img src="logo.png" alt="Логотип ЭКСИТ" style="height: 50px; width: auto; max-width: 150px; object-fit: contain; border-radius: 8px; display: block;">
+                </a>
+                <p class="footer-desc">Строительно-инжиниринговая компания с 25-летним опытом. Комплексные решения под ключ для ваших объектов.</p>
+                <div class="footer-address-logo" style="margin-top: 20px;">
+                    <p class="footer-requisites" style="margin: 0; color: rgba(255,255,255,0.7); font-size: 14px;">г. Москва, ул. Молдавская, д. 2</p>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-title">Услуги</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Проектирование</a></li>
+                    <li><a href="#services">Строительство</a></li>
+                    <li><a href="#services">Ремонт и монтаж</a></li>
+                    <li><a href="#services">Поставка оборудования</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Компания</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#why-us">Преимущества</a></li>
+                    <li><a href="#process">Процесс работы</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Контакты</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+79150077473">+7 (915) 007-74-73</a></li>
+                    <li><a href="mailto:ecsito@mail.ru">ecsito@mail.ru</a></li>
+                    <li><a href="https://t.me/ecsito">@ecsito</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 ООО «ЭКСИТ». Все права защищены.</p>
+            <a href="#" class="footer-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">
+                <span>Наверх</span>
+                <div class="footer-top-btn">
+                    <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+                </div>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }, { passive: true });
+
+        // Mobile menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('open');
+        }
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+        }
+
+        // Form submission via FormSubmit.co AJAX
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const status = document.getElementById('formStatus');
+            const toast = document.getElementById('toast');
+
+            // Loading state
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+            btnText.textContent = 'Отправка...';
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success toast
+                    toast.textContent = 'Заявка отправлена! Мы свяжемся с вами.';
+                    toast.classList.add('show');
+                    form.reset();
+                    setTimeout(() => toast.classList.remove('show'), 5000);
+
+                    // Also show inline status
+                    status.textContent = '✓ Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.';
+                    status.style.color = '#22A559';
+                    status.style.display = 'block';
+                } else {
+                    throw new Error('Server error');
+                }
+            })
+            .catch(() => {
+                // Show error
+                status.textContent = '✗ Ошибка отправки. Пожалуйста, позвоните нам: +7 (915) 007-74-73';
+                status.style.color = '#E03A3E';
+                status.style.display = 'block';
+
+                toast.textContent = 'Ошибка отправки. Попробуйте позже или позвоните нам.';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 5000);
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+                btnText.textContent = 'Отправить заявку';
+            });
+        });
+
+        // Project Modal
+        const projectData = {
+            'afi-dev': {
+                title: 'ТЦ АФИ девелопмент',
+                category: 'Торговый центр',
+                location: 'Москва и регионы',
+                image: 'img/afi.jpg',
+                desc: 'Гостиница Аквамарин: разработка и реализация проекта по устройству демпфирующих компенсационных швов на фасаде здания — экономия заказчику 50 000 000 рублей.\n\nБЦ Ривер Стейшен: проектирование и реализация проекта по облегчению, утеплению и покрытию мембраной кровли для ЦО АФИ Девелопмент — экономия 30 000 000 рублей.',
+                photos: [
+                    'img/afi.jpg',
+                    'img/afi-gallery1.jpg',
+                    'img/afi-gallery2.jpg',
+                    'img/afi-gallery3.jpg',
+                    'img/afi-gallery4.png',
+                    'img/afi-gallery5.jpg'
+                ]
+            },
+            'veb': {
+                title: 'Бизнес Центр ВЭБ',
+                category: 'Бизнес-центр',
+                location: 'Москва',
+                image: 'img/veb.jpg',
+                desc: 'Проектирование и реализация проекта по герметизации атриума здания — экономия заказчику 500 000 000 рублей.\n\nПроектирование и реализация проекта по прокладке всех инженерных систем в эксплуатирующемся здании с -2 этажа на 1 этаж для организации работы ресторана «Рыба Моя» — экономия 20 000 000 рублей.',
+                photos: [
+                    'img/veb.jpg',
+                    'img/veb-gallery1.png',
+                    'img/veb-gallery2.jpg'
+                ]
+            },
+            'wrf': {
+                title: 'White Rabbit Family',
+                category: 'Ресторанный холдинг',
+                location: 'Москва',
+                image: 'img/wrf.jpg',
+                desc: 'Ресторан Гвидон: лучшая летняя веранда среди ресторанов Москвы. Спроектирован и реализован проект трансформации летней террасы ресторана Гвидон — ежегодная экономия 3 000 000 рублей.\n\nРесторан White Rabbit: разработан проект летней веранды на крыше здания с соблюдением всех норм пожарной безопасности — экономия составила 5 000 000 рублей.',
+                photos: [
+                    'img/wrf.jpg',
+                    'img/wrf-gallery1.jpg',
+                    'img/wrf-gallery2.jpg',
+                    'img/wrf-gallery3.jpg',
+                    'img/wrf-gallery4.jpg',
+                    'img/wrf-gallery5.jpg',
+                    'img/wrf-gallery6.jpg'
+                ]
+            },
+            'kfc': {
+                title: 'KFC / РОСТИКС',
+                category: 'Сеть ресторанов',
+                location: 'Москва и регионы',
+                image: 'img/kfc.jpg',
+                desc: 'Разработан и реализован проект переноса лестницы на антресоль 2-го этажа — сэкономило заказчику 5 000 000 рублей.\n\nПроектирование и прокладка инженерных систем в работающем здании для организации работы ресторана KFC, офисов и лотов ТЦ Тульский — экономия 15 000 000 рублей.',
+                photos: [
+                    'img/kfc.jpg',
+                    'img/kfc-gallery1.jpg',
+                    'img/kfc-gallery2.jpg'
+                ]
+            },
+            'zhk': {
+                title: 'Общественные объекты',
+                category: 'Общественные объекты',
+                location: 'Москва и регионы',
+                image: 'img/zhk.jpg',
+                desc: 'Разработаны мобильные здания и сооружения: гостиничные номера, офисы, кафе и бани на основе морских контейнеров площадью от 12,7 м². Оборудованы всеми инженерными системами для уютного и приятного проживания, отдыха и работы. Оснащены всем необходимым оборудованием и мебелью, антивандальная система защиты окон и дверей, дистанционное управление и др.',
+                photos: [
+                    'img/zhk.jpg',
+                    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=80',
+                    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80'
+                ]
+            },
+            'izhs': {
+                title: 'ИЖС',
+                category: 'Индивидуальное строительство',
+                location: 'Московская область',
+                image: 'img/izhs.jpg',
+                desc: 'Разработка мобильных зданий и сооружений: дома и бани на основе морских контейнеров площадью от 12,7 м². Оборудованы всеми инженерными системами для уютного и приятного проживания и отдыха.',
+                photos: [
+                    'img/izhs.jpg',
+                    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400&q=80',
+                    'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400&q=80'
+                ]
+            },
+            'prom': {
+                title: 'Автомоечные комплексы',
+                category: 'Автомоечные комплексы',
+                location: 'Москва и регионы',
+                image: 'img/prom.jpg',
+                desc: 'Автомоечные комплексы на основе быстровозводимых конструкций — оборудованы всеми инженерными системами для начала работы. Оснащены всем необходимым моечным оборудованием и очистными системами, дистанционное управление и др.',
+                photos: [
+                    'img/prom.jpg',
+                    'img/prom-gallery1.jpg',
+                    'img/prom-gallery2.jpg',
+                    'img/prom-gallery3.jpg',
+                    'img/prom-gallery4.jpg'
+                ]
+            }
+        };
+
+        function openModal(projectId) {
+            const data = projectData[projectId];
+            if (!data) return;
+
+            document.getElementById('modalImage').src = data.image;
+            document.getElementById('modalImage').alt = data.title;
+            document.getElementById('modalCategory').textContent = data.category;
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalLocation').textContent = data.location;
+            document.getElementById('modalDesc').textContent = data.desc;
+
+            // Build gallery
+            const gallery = document.getElementById('modalGallery');
+            gallery.innerHTML = '';
+            data.photos.forEach((photo, index) => {
+                const img = document.createElement('img');
+                img.src = photo;
+                img.alt = data.title + ' фото ' + (index + 1);
+                img.className = index === 0 ? 'active' : '';
+                img.onclick = () => {
+                    document.getElementById('modalImage').src = photo;
+                    gallery.querySelectorAll('img').forEach(g => g.classList.remove('active'));
+                    img.classList.add('active');
+                };
+                gallery.appendChild(img);
+            });
+
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Keyboard close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
+        gsap.to('.hero-title', {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power3.out',
+            delay: 0.2
+        });
+        gsap.to('.hero-subtitle', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.5
+        });
+        gsap.to('.hero-tagline', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.6
+        });
+        gsap.to('.hero-buttons', {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power3.out',
+            delay: 0.7
+        });
+        gsap.to('.hero-stats-inner', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.9
+        });
+
+        // Scroll reveal animations
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach((el, i) => {
+            gsap.fromTo(el, 
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // Hero parallax
+        gsap.to('.hero-bg img', {
+            yPercent: 30,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+    </script>
+
+    <!-- Floating Messenger Buttons -->
+    <div class="messenger-panel" id="messengerPanel">
+        <a href="https://vk.com/ecsito" target="_blank" class="messenger-btn vk" data-label="ВКонтакте" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.339-3.202C4.624 10.857 4 8.587 4 8.163c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.847 2.456 2.274 4.607 2.862 4.607.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .373.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.15-3.574 2.15-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/></svg>
+        </a>
+        <a href="https://t.me/ecsito" target="_blank" class="messenger-btn telegram" data-label="Telegram" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
+        <a href="https://wa.me/79150077473" target="_blank" class="messenger-btn whatsapp" data-label="WhatsApp" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+    </div>
+
+    <script>
+        // Messenger buttons scroll reveal
+        (function() {
+            const buttons = document.querySelectorAll('.messenger-btn');
+            const revealOffset = 200;
+
+            function updateMessengerButtons() {
+                const scrolled = window.scrollY > revealOffset;
+                buttons.forEach((btn, index) => {
+                    if (scrolled) {
+                        btn.classList.add('visible');
+                        btn.style.transitionDelay = (buttons.length - 1 - index) * 0.08 + 's';
+                    } else {
+                        btn.classList.remove('visible');
+                        btn.style.transitionDelay = index * 0.05 + 's';
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateMessengerButtons, { passive: true });
+            // Show on load if already scrolled
+            updateMessengerButtons();
+        })();
+    </script>
+</body>
+</html>
